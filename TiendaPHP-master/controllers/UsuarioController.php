@@ -65,31 +65,63 @@ class UsuarioController
     }
 
     // Procesa el inicio de sesión
-    public function login()
-    {
-        if (isset($_POST['email']) && isset($_POST['password'])) {
-            $usuario = new Usuario();
-            $usuario->setEmail($_POST['email']);
-            $usuario->setPassword($_POST['password']);
-            $identity = $usuario->login();
+    
+public function login()
+{
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $usuario = new Usuario();
+        $usuario->setEmail($_POST['email']);
+        $usuario->setPassword($_POST['password']);
+        $identity = $usuario->login();
 
-            if (!empty($identity)) {
-                $_SESSION['identity'] = $identity;
-                if ($identity->rol == 'admin') {
-                    $_SESSION['admin'] = true;
-                }
-            } else {
-                $_SESSION['error_login'] = '¡Ha habido un error al iniciar sesión!';
+        if (!empty($identity)) {
+            $_SESSION['identity'] = $identity;
+            if ($identity->rol == 'admin') {
+                $_SESSION['admin'] = true;
             }
+            
+            // Crear una cookie de sesión con duración de 30 minutos
+            setcookie("user_session", session_id(), time() + (30 * 60), "/");
+        } else {
+            $_SESSION['error_login'] = '¡Ha habido un error al iniciar sesión!';
         }
-        
-        header('Location: ' . base_url);
+    }
+    
+    header('Location: ' . base_url);
+}
+
+// Cierra la sesión del usuario y elimina la cookie
+public function logout()
+{
+    unset($_SESSION['identity'], $_SESSION['admin']);
+    
+    // Destruir la cookie de sesión
+    if (isset($_COOKIE["user_session"])) {
+        setcookie("user_session", "", time() - 3600, "/"); // Expira en el pasado
     }
 
-    // Cierra la sesión del usuario
-    public function logout()
-    {
-        unset($_SESSION['identity'], $_SESSION['admin']);
-        header('Location: ' . base_url);
+    header('Location: ' . base_url);
+}
+
+// Verifica la inactividad del usuario
+public static function checkSessionTimeout()
+{
+    if (isset($_COOKIE["user_session"])) {
+        // Si la cookie expira, cierra la sesión
+        if ($_COOKIE["user_session"] != session_id()) {
+            unset($_SESSION['identity'], $_SESSION['admin']);
+            setcookie("user_session", "", time() - 3600, "/");
+            header('Location: ' . base_url . 'usuario/logout');
+            exit();
+        }
     }
+}
+
+
+
+
+
+
+
+    
 }
