@@ -11,7 +11,7 @@
     <?php if ($product->imagen != null) : ?>
     <img src="<?= base_url ?>uploads/images/<?= $product->imagen ?>" alt="<?= $product->nombre ?>">
     <?php else : ?>
-    <img src="<?= base_url ?>assets/img/camiseta.png" alt="camiseta-placeholder">
+    <img src="<?= base_url ?>uploads/images/mesa_comedor-2640.jpg" alt="mesa de comer">
     <?php endif; ?>
 
     <h2><?= $product->nombre ?></h2></a>
