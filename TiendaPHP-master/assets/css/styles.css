@@ -1,0 +1,273 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+    --color-primario: #01b1ea;
+    --color-secundario: #222;
+    --color-texto: #555;
+    --color-fondo: #f0f0f0;
+    --sombra: 0 0 10px rgba(0, 0, 0, 0.1);
+    --transicion: all 300ms ease-in-out;
+}
+
+/* ===== RESETEO Y ESTILOS GENERALES ===== */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: black;
+}
+
+body {
+    background: url(../img/bg.png);
+    color: var(--color-texto);
+}
+
+a {
+    color: var(--color-primario);
+    text-decoration: none;
+    transition: var(--transicion);
+}
+
+a:hover {
+    color: var(--color-texto);
+}
+
+.success-alert { color: green; }
+.error-alert { color: red; }
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+#container {
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: var(--sombra);
+    background: var(--color-fondo);
+    border-radius: 8px;
+}
+
+/* ===== HEADER ===== */
+#header {
+    height: 145px;
+    background: var(--color-fondo);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+#logo img {
+    height: 100px;
+}
+
+#logo a {
+    font-size: 40px;
+    letter-spacing: 4px;
+    font-weight: bold;
+    color: var(--color-primario);
+    text-shadow: 0 2px 1px var(--color-secundario);
+}
+
+#logo a:hover {
+    text-shadow: 0 2px 1px var(--color-secundario), 0 0 4px var(--color-primario);
+}
+
+/* ===== MENU ===== */
+#menu {
+    background: var(--color-secundario);
+    color: white;
+    height: 55px;
+    border-bottom: 4px solid var(--color-primario);
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+#menu ul li {
+    padding: 0 15px;
+    line-height: 55px;
+}
+
+#menu a:hover {
+    background: var(--color-primario);
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+#content {
+    display: flex;
+    background: white;
+    padding: 20px;
+}
+
+#sidebar {
+    width: 22%;
+    min-height: 500px;
+    padding: 10px;
+}
+
+#sidebar h3 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    background: #e1e1e1;
+    padding: 10px;
+    border-bottom: 2px solid var(--color-primario);
+}
+
+/* ===== PRODUCTOS ===== */
+.product {
+    width: 30%;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: var(--transicion);
+}
+
+.product img {
+    height: 170px;
+    width: 155px;
+    transition: var(--transicion);
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product p {
+    font-weight: bold;
+}
+
+/* ===== BOTONES ===== */
+.button, input[type="button"], input[type="submit"], button {
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+    text-align: center;
+}
+
+.button {
+    background: #33AE3D;
+    color: white;
+}
+
+.button-red {
+    background: red;
+    border: 1px solid #cf1717;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+/* ===== FOOTER ===== */
+#footer {
+    text-align: center;
+    padding: 10px;
+    background: var(--color-secundario);
+    color: white;
+}
+
+
+/* sidebar*/
+/* Reset básico */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 300px;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Bloques del sidebar */
+.block-aside {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.block-aside h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Estilos para los enlaces */
+.block-aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+.block-aside ul li {
+    margin: 8px 0;
+}
+
+.block-aside ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.block-aside ul li a:hover {
+    color: #0056b3;
+}
+
+/* Formulario de login */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+form input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Cuerpo principal */
+#main {
+    margin-left: 320px;
+    padding: 20px;
+}
+
+/* Estilos para el mensaje de administrador */
+.block-aside p {
+    font-size: 14px;
+    color: #444;
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 5px;
+}
+
