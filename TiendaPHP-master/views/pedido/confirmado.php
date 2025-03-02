@@ -1,3 +1,5 @@
+
+
 <?php if (isset($_SESSION['pedido']) && $_SESSION['pedido'] == 'completed') : ?>
 <h1>Tu pedido se ha realizado correctamente</h1>
 <p>Tu pedido ha sido guardado con exito. Una vez que realices la transferencia bancaria a la cuenta ESXX XXXX XXXX XXXX XXXX XXXX con el coste del pedido será procesado y enviado.</p>
@@ -36,7 +38,19 @@ Productos:
     <?php endwhile; ?>
 </table>
 <br>
+<?php 
+    // Enviar correo de confirmación
+    if (isset($_SESSION['identity'])) {
+        $emailCliente = $_SESSION['identity']->email;
+        $correoEnviado = enviarCorreoConfirmacion($emailCliente, $pedido, $productos);
 
+        if ($correoEnviado) {
+            echo "<p>Se ha enviado un correo de confirmación a tu email: $emailCliente</p>";
+        } else {
+            echo "<p>Hubo un problema enviando el correo de confirmación.</p>";
+        }
+    }
+    ?>
 <?php endif; ?>
 
 
