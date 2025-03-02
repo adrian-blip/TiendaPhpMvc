@@ -41,7 +41,7 @@ Productos:
 
 <?php endif; ?>
 <?php 
-require_once 'helpers/mailHelper.php';
+require_once './helpers/mailHelpers.php';
     // Enviar correo de confirmación
     if (isset($_SESSION['identity'])) {
         $emailCliente = $_SESSION['identity']->email;

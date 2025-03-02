@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
 {
@@ -10,7 +10,7 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
     try {
         // Configuración del servidor SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.tudominio.com'; // Cambia esto según tu hosting
+        $mail->Host = 'smtp.gmail.com'; // Cambia esto según tu hosting
         $mail->SMTPAuth = true;
         $mail->Username = 'tuemail@dominio.com';
         $mail->Password = 'tupassword';
@@ -18,7 +18,7 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
         $mail->Port = 587;
 
         // Destinatario
-        $mail->setFrom('tuemail@dominio.com', 'Tu Tienda Online');
+        $mail->setFrom('adriancamiloguerra@gmail.com', 'Tu Tienda Online');
         $mail->addAddress($emailCliente);
 
         // Asunto y cuerpo del mensaje
@@ -30,8 +30,11 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
         $body .= "<h3>Detalles del pedido:</h3><ul>";
         
         foreach ($productos as $producto) {
-            $body .= "<li>{$producto->nombre} - {$producto->unidades} unidades - {$producto->precio}€ c/u</li>";
+            $mensaje .= "Producto: " . $producto['producto']->nombre . 
+                        " - Cantidad: " . $producto['unidades'] . 
+                        " - Precio: " . $producto['producto']->precio . "€<br>";
         }
+        
 
         $body .= "</ul><p>Pronto recibirás más detalles sobre el envío.</p>";
         $mail->Body = $body;
