@@ -43,4 +43,5 @@
     </div>
 </aside>
 
-<div id="main">
+<div class="main ">
+    <section class="products-container">
