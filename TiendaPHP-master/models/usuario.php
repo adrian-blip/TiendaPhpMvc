@@ -28,9 +28,10 @@ class Usuario {
     public function setNombre($nombre) { $this->nombre = $this->db->real_escape_string($nombre); }
     public function setApellidos($apellidos) { $this->apellidos = $this->db->real_escape_string($apellidos); }
     public function setEmail($email) { $this->email = $this->db->real_escape_string($email); }
-    
+    public function setPassword($password) { $this->password = $this->db->real_escape_string($password); }
+
     // Aquí se encripta la contraseña al establecerla
-    public function setPassword($password) { 
+    public function hashPassword($password) { 
         $this->password = password_hash($this->db->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]); 
     }
 
@@ -56,21 +57,24 @@ class Usuario {
 
     // Iniciar sesión verificando email y contraseña
     public function login() {
-        $resultado = false;
+        $resultado = [];
         $email = $this->email;
         $password = $this->password;
 
-        $sql = "SELECT * FROM usuarios WHERE email = '$email'";
-        $login = $this->db->query($sql);
-
-        if ($login && $login->num_rows == 1) {
-            $usuario = $login->fetch_object();
-
+        $sql = "SELECT * FROM usuarios WHERE email = ?";
+        $login = $this->db->prepare($sql);
+        $login->bind_param("s", $email);
+        $login->execute();
+        $result = $login->get_result();
+    
+        if ($result && $result->num_rows == 1) {
+            $usuario = $result->fetch_object();
             // Verificar la contraseña
             if (password_verify($password, $usuario->password)) {
                 $resultado = $usuario;
             }
         }
+        
         return $resultado;
     }
 }

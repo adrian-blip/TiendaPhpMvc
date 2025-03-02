@@ -51,7 +51,7 @@ class UsuarioController
                 $usuario->setNombre($nombre);
                 $usuario->setApellidos($apellidos);
                 $usuario->setEmail($email);
-                $usuario->setPassword($password);
+                $usuario->hashPassword($password);
                 
                 $save = $usuario->save();
                 $_SESSION['register'] = $save ? 'completed' : 'failed';
@@ -73,7 +73,7 @@ class UsuarioController
             $usuario->setPassword($_POST['password']);
             $identity = $usuario->login();
 
-            if ($identity && is_object($identity)) {
+            if (!empty($identity)) {
                 $_SESSION['identity'] = $identity;
                 if ($identity->rol == 'admin') {
                     $_SESSION['admin'] = true;
