@@ -12,8 +12,8 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Cambia esto según tu hosting
         $mail->SMTPAuth = true;
-        $mail->Username = 'tuemail@dominio.com';
-        $mail->Password = 'tupassword';
+        $mail->Username = 'adriancamiloguerra@gmail.com';
+        $mail->Password = '';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -28,13 +28,15 @@ function enviarCorreoConfirmacion($emailCliente, $pedido, $productos)
         $body = "<h1>¡Gracias por tu compra!</h1>";
         $body .= "<p>Tu pedido ha sido confirmado con éxito. Total a pagar: <strong>{$pedido->coste} €</strong></p>";
         $body .= "<h3>Detalles del pedido:</h3><ul>";
-        
-        foreach ($productos as $producto) {
-            $mensaje .= "Producto: " . $producto['producto']->nombre . 
-                        " - Cantidad: " . $producto['unidades'] . 
-                        " - Precio: " . $producto['producto']->precio . "€<br>";
+        var_dump($productos);
+       
+        while ($producto = $pedido->productos->fetch_assoc()) {
+            $mensaje .= "<li>{$producto['nombre']} - Cantidad: {$producto['stock']} - Precio: {$producto['precio']}€</li>";
         }
         
+        
+        
+
 
         $body .= "</ul><p>Pronto recibirás más detalles sobre el envío.</p>";
         $mail->Body = $body;
