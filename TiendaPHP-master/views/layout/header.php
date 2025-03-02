@@ -14,7 +14,7 @@
     <div id="container">
         <header id="header">
             <div id="logo">
-                <a href="<?= base_url ?>">Tienda de Variedades</a>
+                <a href="<?= base_url ?>">Tienda de Muebles</a>
 
             </div>
         </header>

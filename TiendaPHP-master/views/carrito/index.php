@@ -18,7 +18,7 @@
         <td><?php if ($producto->imagen != null) : ?>
             <img src="<?= base_url ?>uploads/images/<?= $producto->imagen ?>" alt="<?= $producto->nombre ?>" class="img-carrito">
             <?php else : ?>
-            <img src="<?= base_url ?>assets/img/camiseta.png" alt="camiseta-placeholder" class="img-carrito">
+            <img src="<?= base_url ?>assets/img/alcoba.jpg" alt="camiseta-placeholder" class="img-carrito">
             <?php endif; ?>
         </td>
         <td><a href="<?= base_url ?>producto/ver&id=<?= $producto->id ?>"><?= $producto->nombre ?></a></td>
