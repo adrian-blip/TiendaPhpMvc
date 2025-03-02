@@ -38,7 +38,10 @@ Productos:
     <?php endwhile; ?>
 </table>
 <br>
+
+<?php endif; ?>
 <?php 
+require_once 'helpers/mailHelper.php';
     // Enviar correo de confirmación
     if (isset($_SESSION['identity'])) {
         $emailCliente = $_SESSION['identity']->email;
@@ -51,8 +54,6 @@ Productos:
         }
     }
     ?>
-<?php endif; ?>
-
 
 <?php Utils::deleteSession('carrito'); ?>
 <?php elseif (isset($_SESSION['pedido']) && $_SESSION['pedido'] == 'failed') : ?>
