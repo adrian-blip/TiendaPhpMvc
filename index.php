@@ -1,3 +1,3 @@
 <?php
-    require_once("src/index")
+    require_once("src/main.php")
 ?>
